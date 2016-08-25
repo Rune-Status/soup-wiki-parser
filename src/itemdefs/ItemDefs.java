@@ -3,6 +3,7 @@ package itemdefs;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,17 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 public class ItemDefs {
 
 	public static void run() throws IOException {
+
+		List<ItemDef> itemDefs = new ArrayList<>();
+
 		boolean test = true;
 
 		File file = new File("data/itemdefs-dump.txt");
@@ -62,11 +71,14 @@ public class ItemDefs {
 				continue;
 			}
 
+			itemDefs.add(def);
+
 			if (test) {
 				break;
 			}
 		}
 		br.close();
+		writeItemDefs(itemDefs);
 	}
 
 	private static void grabItem(ItemDef def) throws IOException {
@@ -158,7 +170,7 @@ public class ItemDefs {
 		for (int i = 0; i < 14; i++) {
 			bonusesArray[i] = bonusesList.get(i);
 		}
-		
+
 		def.examine = examine;
 		def.equipmentType = slot; // TODO
 		def.highAlchValue = Integer.parseInt(highAlchValue.replace("\u00A0", ""));
@@ -169,6 +181,21 @@ public class ItemDefs {
 		def.platebody = plateBody;
 		def.fullHelm = fullhelm;
 		def.tradeable = tradeable;
+	}
+
+	private static void writeItemDefs(List<ItemDef> itemDefs) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		
+		try {
+
+			FileWriter file = new FileWriter("data/outputitemdefs.json");
+			file.write(gson.toJson(itemDefs.toArray()));
+			file.flush();
+			file.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

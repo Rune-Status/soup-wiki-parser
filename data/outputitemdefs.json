@@ -1,0 +1,39 @@
+[
+  {
+    "id": 0,
+    "name": "Abyssal whip",
+    "examine": "A weapon from the abyss.",
+    "equipmentType": -1,
+    "noted": false,
+    "noteable": false,
+    "stackable": false,
+    "parentId": -1,
+    "notedId": -1,
+    "members": true,
+    "specialStorePrice": 1,
+    "generalStorePrice": 1,
+    "highAlchValue": 72000,
+    "lowAlchValue": 48000,
+    "weight": 0.45,
+    "bonuses": [
+      0,
+      82,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      82,
+      0,
+      0,
+      0
+    ],
+    "twoHanded": false,
+    "platebody": false,
+    "fullHelm": false,
+    "tradeable": true
+  }
+]

@@ -23,6 +23,4 @@ public class Main {
 			System.out.println(ele.text().replace(" ", ":"));
 		}
 	}
-
-
 }
